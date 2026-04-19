@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://ck0np0q75p87t"]
+
+[ext_resource type="Script" uid="uid://2tqp38oo53fm" path="res://GalgameFramework/scirpts/TransitionTexturer.cs" id="1_kwcnv"]
+[ext_resource type="Texture2D" uid="uid://ct4px5meb1get" path="res://GalgameFramework/test/yoshino.png" id="2_teqwa"]
+
+[node name="TransitionTexture" type="Control" unique_id=1265212161 node_paths=PackedStringArray("_firstTex", "_secondTex")]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -921.0
+offset_right = 369.0
+offset_bottom = 699.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_kwcnv")
+_firstTex = NodePath("First")
+_secondTex = NodePath("Second")
+metadata/_edit_group_ = true
+
+[node name="First" type="TextureRect" parent="." unique_id=1803897290]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_teqwa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Second" type="TextureRect" parent="." unique_id=402748988]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_teqwa")
+expand_mode = 1
+stretch_mode = 5

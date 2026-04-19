@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://drb0k1rt3mm6y"]
+
+[ext_resource type="Script" uid="uid://bovfe48dfgw7v" path="res://GalgameFramework/scirpts/global/CharacterData.cs" id="1_fknje"]
+
+[resource]
+script = ExtResource("1_fknje")
+metadata/_custom_type_script = "uid://bovfe48dfgw7v"
