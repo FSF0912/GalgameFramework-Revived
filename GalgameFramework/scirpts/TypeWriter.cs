@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using GalgameFramework.Extensions;
 using Godot;
 using GodotTask;
 
@@ -17,7 +18,7 @@ namespace GalgameFramework
             VisibleRatio = 0;
         }
 
-        public async GDTask TypeWorkAsync(string text)
+        public async GDTask TypeWorkAsync(string text, bool append = false)
         {
             if (IsTyping) return;
             IsTyping = true;
@@ -26,18 +27,23 @@ namespace GalgameFramework
             _cts?.Dispose();
             _cts = new CancellationTokenSource();
 
-            VisibleRatio = 0;
-            Text = text;
-            var totalChars = Text.Length;
+            if (append)
+            {
+                AppendText(text);
+                VisibleRatio = 1 - (text.Length / Text.Length) + 0.05f;
+            }
+            else
+            {
+                VisibleRatio = 0;
+                Text = text;
+            }
 
             try
             {
                 _tween?.Kill();
                 _tween = CreateTween();
 
-                _tween.TweenProperty(this, nameof(VisibleRatio), 1, PerCharSpeed * totalChars).
-                SetEase(Tween.EaseType.InOut).
-                SetTrans(Tween.TransitionType.Linear);
+                _tween.TweenProperty(this, nameof(VisibleRatio), 1, PerCharSpeed * text.Length).SetPureLinear();
 
                 await _tween.ToSignal(this, Tween.SignalName.Finished).AsGDTask().
                 AttachExternalCancellation(_cts.Token);

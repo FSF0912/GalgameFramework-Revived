@@ -13,11 +13,15 @@ namespace GalgameFramework
         public override void _Ready()
         {
             base._Ready();
-            if (_bodyTransitioner == null) _bodyTransitioner = GetNode<TransitionTexturer>("BodyTransitioner");
-            if (_faceTransitioner == null) _faceTransitioner = GetNode<TransitionTexturer>("FaceTransitioner");
-            if (_decorationTransitioner == null) _decorationTransitioner = GetNode<TransitionTexturer>("DecorationTransitioner");
+            _bodyTransitioner ??= GetNode<TransitionTexturer>("BodyTransitioner");
+            _faceTransitioner ??= GetNode<TransitionTexturer>("FaceTransitioner");
+            _decorationTransitioner ??= GetNode<TransitionTexturer>("DecorationTransitioner");
         }
 
-
+        //tex_name format : partname:texturename
+        /*public async GDTask SetBodyAsync(string bodyTexName, TransitionType type = TransitionType.CrossFade, float duration = 0.6f)
+        {
+            
+        }*/
     }
 }
