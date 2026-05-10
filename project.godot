@@ -10,14 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Galgame-Framework"
+config/name="Godot-GalgameFramework-Revived"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-DialogueManager="*uid://j7t0x8bi5kgu"
 
 [display]
 

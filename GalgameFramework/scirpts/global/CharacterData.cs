@@ -20,7 +20,7 @@ public partial class SingleTextureGroupWrapper : Resource
 public partial class SingleTextureWrapper : Resource
 {
     [Export] public string TextureName;
-    [Export] public string TexturePath;
+    [Export(PropertyHint.File, "*.png")] public string TexturePath;
 }
 
 public class SingleCharacter
@@ -49,7 +49,7 @@ public partial class CharacterData : Resource
 {
     public Godot.Collections.Array<SingleCharacterWrapper> Characters = new Godot.Collections.Array<SingleCharacterWrapper>();
 
-    public List<SingleCharacter> GetCharacters()
+    /*public List<SingleCharacter> GetCharacters()
     {
         var result = Characters.Select(character => new SingleCharacter
         {
@@ -69,5 +69,5 @@ public partial class CharacterData : Resource
 
         return result.ToList();
 
-    }
+    }*/
 }
