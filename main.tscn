@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ccmcpgwxk704g"]
 
 [ext_resource type="Theme" uid="uid://3eg6o8bbws1x" path="res://GalgameFramework/default_theme.tres" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://csy03isj85qod" path="res://GalgameFramework/scirpts/TypeWriter.cs" id="2_0xm2m"]
+[ext_resource type="Curve" uid="uid://76pe4g3427s5" path="res://GalgameFramework/resources/anim_curves/typewriter_lerp_curve.tres" id="3_1bvp3"]
+[ext_resource type="Curve" uid="uid://dgnj1obb7erwf" path="res://GalgameFramework/resources/anim_curves/typewriter_acc_curve.tres" id="4_lquwl"]
 
 [node name="Control" type="Control" unique_id=338351776]
 layout_mode = 3
@@ -51,11 +54,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
 
-[node name="TextShowArea" type="VBoxContainer" parent="UI Elements/HBoxContainer/Dialogue/Edge" unique_id=37190915]
+[node name="Control" type="Control" parent="UI Elements/HBoxContainer/Dialogue/Edge" unique_id=677325352]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="UI Elements/HBoxContainer/Dialogue/Edge/TextShowArea" unique_id=563487718]
+[node name="TextShowArea" type="VBoxContainer" parent="UI Elements/HBoxContainer/Dialogue/Edge/Control" unique_id=37190915 node_paths=PackedStringArray("ContextLabel", "NameLabel")]
+layout_mode = 0
+offset_right = 1560.0
+offset_bottom = 284.0
+script = ExtResource("2_0xm2m")
+ContextLabel = NodePath("Context")
+NameLabel = NodePath("Name")
+LerpCurve = ExtResource("3_1bvp3")
+AccelerationCurve = ExtResource("4_lquwl")
+
+[node name="Name" type="Label" parent="UI Elements/HBoxContainer/Dialogue/Edge/Control/TextShowArea" unique_id=563487718]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Name
@@ -63,7 +80,7 @@ text = "Name
 clip_text = true
 max_lines_visible = 1
 
-[node name="Context" type="RichTextLabel" parent="UI Elements/HBoxContainer/Dialogue/Edge/TextShowArea" unique_id=413778604]
+[node name="Context" type="RichTextLabel" parent="UI Elements/HBoxContainer/Dialogue/Edge/Control/TextShowArea" unique_id=413778604]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0

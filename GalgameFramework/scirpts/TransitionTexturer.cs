@@ -46,7 +46,7 @@ namespace GalgameFramework
             base._ExitTree();
         }
 
-        public async Task AnimationAsync(List<SingleAnimationTrack> animQueues)
+        public async GDTask AnimationAsync(List<SingleAnimationTrack> animQueues)
         {
             if (IsAnimating) return;
             IsAnimating = true;
@@ -101,12 +101,13 @@ namespace GalgameFramework
             _cts?.Cancel();
             _cts?.Dispose();
             _cts = new CancellationTokenSource();
+            var token = _cts.Token;
 
             _animPlayer.Play($"{LibName}/{AnimName}");
 
             try
             {
-                await ToSignal(_animPlayer, AnimationPlayer.SignalName.AnimationFinished).AsGDTask().AttachExternalCancellation(_cts.Token);
+                await ToSignal(_animPlayer, AnimationPlayer.SignalName.AnimationFinished).AsGDTask().AttachExternalCancellation(token);
             }
             catch (OperationCanceledException)
             {
