@@ -20,7 +20,7 @@ namespace GalgameFramework
         public Vector2 OriginalPosition;
         [ExportSubgroup("Movement")]
         [Export] public Vector2 LimitMovePixels = new Vector2(40, 20);
-        [Export] public Vector2 OffsetRatio = new Vector2(0.5f, 0.5f);
+        [Export] public Vector2 OffsetRatio = new Vector2(0.5f, 0.25f);
         [ExportSubgroup("Acceleration&Curves")]
         [Export] public Curve LerpCurve;
         [Export] public float LerpSpeed = 5f;
@@ -65,13 +65,15 @@ namespace GalgameFramework
             float weight_processed = LerpCurve.Sample(weight_linear);
             float weight_accelerationed = MathE.Clamp01(weight_processed * AccelerationCurve.Sample(acceleration));
             var Move = MathE.Lerp(Position, OriginalPosition + LimitMovePixels * followTargetRatio, weight_accelerationed);
-            Position = Move;
+            OffsetTransformPosition = Move;
         }
 
-        public async GDTask TypeWorkAsync(string text, bool append = false)
+        public async GDTask TypeWorkAsync(string speakerName, string context, Color outlineColor, bool append = false)
         {
             if (IsTyping) return;
             IsTyping = true;
+
+            NameLabel.Text = speakerName;
 
             _cts?.Cancel();
             _cts?.Dispose();
@@ -80,13 +82,13 @@ namespace GalgameFramework
 
             if (append)
             {
-                ContextLabel.AppendText(text);
-                ContextLabel.VisibleRatio = 1 - (text.Length / ContextLabel.Text.Length) + 0.05f;
+                ContextLabel.AppendText(context);
+                ContextLabel.VisibleRatio = 1 - (context.Length / ContextLabel.Text.Length) + 0.05f;
             }
             else
             {
                 ContextLabel.VisibleRatio = 0;
-                ContextLabel.Text = text;
+                ContextLabel.Text = context;
             }
 
             try
@@ -94,7 +96,7 @@ namespace GalgameFramework
                 _tween?.Kill();
                 _tween = CreateTween();
 
-                _tween.TweenProperty(ContextLabel, nameof(ContextLabel.VisibleRatio), 1, PerCharSpeed * text.Length).SetPureLinear();
+                _tween.TweenProperty(ContextLabel, nameof(ContextLabel.VisibleRatio), 1, PerCharSpeed * context.Length).SetPureLinear();
 
                 await _tween.ToSignal(this, Tween.SignalName.Finished).AsGDTask().
                 AttachExternalCancellation(token);

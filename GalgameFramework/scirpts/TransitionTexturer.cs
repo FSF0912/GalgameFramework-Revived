@@ -2,7 +2,6 @@ using Godot;
 using System.Threading;
 using GodotTask;
 using System;
-using System.Threading.Tasks;
 using Ease = Godot.Animation.InterpolationType;
 using GD_Array = Godot.Collections.Array;
 using GD_Dictionary = Godot.Collections.Dictionary;

@@ -1,4 +1,4 @@
-<Project Sdk="Godot.NET.Sdk/4.7.0">
+<Project Sdk="Godot.NET.Sdk/4.6.2">
   <Import Project="addons\GodotInk\GodotInk.props" />
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>

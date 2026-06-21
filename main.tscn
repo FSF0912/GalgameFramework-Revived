@@ -30,16 +30,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI Elements" unique_id=1627767484]
-layout_mode = 2
-alignment = 1
-
-[node name="Dialogue" type="Control" parent="UI Elements/HBoxContainer" unique_id=992351455]
+[node name="Dialogue" type="Control" parent="UI Elements" unique_id=992351455]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 5.0
 
-[node name="BackGround" type="TextureRect" parent="UI Elements/HBoxContainer/Dialogue" unique_id=87124922]
+[node name="BackGround" type="TextureRect" parent="UI Elements/Dialogue" unique_id=87124922]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +43,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Edge" type="MarginContainer" parent="UI Elements/HBoxContainer/Dialogue" unique_id=1343278876]
+[node name="Edge" type="MarginContainer" parent="UI Elements/Dialogue" unique_id=1343278876]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,20 +55,17 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 20
 
-[node name="Control" type="Control" parent="UI Elements/HBoxContainer/Dialogue/Edge" unique_id=677325352]
+[node name="TextShowArea" type="VBoxContainer" parent="UI Elements/Dialogue/Edge" unique_id=37190915 node_paths=PackedStringArray("ContextLabel", "NameLabel")]
 layout_mode = 2
-
-[node name="TextShowArea" type="VBoxContainer" parent="UI Elements/HBoxContainer/Dialogue/Edge/Control" unique_id=37190915 node_paths=PackedStringArray("ContextLabel", "NameLabel")]
-layout_mode = 0
-offset_right = 1560.0
-offset_bottom = 284.0
+offset_transform_enabled = true
+offset_transform_visual_only = false
 script = ExtResource("2_0xm2m")
 ContextLabel = NodePath("Context")
 NameLabel = NodePath("Name")
 LerpCurve = ExtResource("3_1bvp3")
 AccelerationCurve = ExtResource("4_lquwl")
 
-[node name="Name" type="Label" parent="UI Elements/HBoxContainer/Dialogue/Edge/Control/TextShowArea" unique_id=563487718]
+[node name="Name" type="Label" parent="UI Elements/Dialogue/Edge/TextShowArea" unique_id=563487718]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Name
@@ -80,49 +73,10 @@ text = "Name
 clip_text = true
 max_lines_visible = 1
 
-[node name="Context" type="RichTextLabel" parent="UI Elements/HBoxContainer/Dialogue/Edge/Control/TextShowArea" unique_id=413778604]
+[node name="Context" type="RichTextLabel" parent="UI Elements/Dialogue/Edge/TextShowArea" unique_id=413778604]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 bbcode_enabled = true
 text = "hello."
 scroll_following_visible_characters = true
-
-[node name="Buttons" type="Control" parent="UI Elements/HBoxContainer" unique_id=906893516]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI Elements/HBoxContainer/Buttons" unique_id=1458887318]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-follow_focus = true
-draw_focus_border = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI Elements/HBoxContainer/Buttons/ScrollContainer" unique_id=528753544]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Button" type="Button" parent="UI Elements/HBoxContainer/Buttons/ScrollContainer/VBoxContainer" unique_id=1326288687]
-layout_mode = 2
-text = "btn"
-
-[node name="Button2" type="Button" parent="UI Elements/HBoxContainer/Buttons/ScrollContainer/VBoxContainer" unique_id=1841141168]
-layout_mode = 2
-text = "btn"
-
-[node name="Button3" type="Button" parent="UI Elements/HBoxContainer/Buttons/ScrollContainer/VBoxContainer" unique_id=2041079823]
-layout_mode = 2
-text = "btn"
-
-[node name="Button4" type="Button" parent="UI Elements/HBoxContainer/Buttons/ScrollContainer/VBoxContainer" unique_id=878452979]
-layout_mode = 2
-text = "btn"
-
-[node name="Button5" type="Button" parent="UI Elements/HBoxContainer/Buttons/ScrollContainer/VBoxContainer" unique_id=1612932153]
-layout_mode = 2
-text = "btn"
