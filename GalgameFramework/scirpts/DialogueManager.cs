@@ -11,17 +11,21 @@ using System;
 
 namespace GalgameFramework
 {
+    [GlobalClass]
     public partial class DialogueManager : Node
     {
         public static DialogueManager Instance { get; private set; }
         [Export] public Array<CharacterData> characterDatas;
+        [Export] public GlobalResData resData;
         [Export] public InkStory story;
         [Export] public TypeWriter typeWriter;
+        [Export] public TransitionTexturer backGround;
         InkStory _currentStory;
 
         GDTask _dialogueTask;
         CancellationTokenSource _dialogueCTS;
 
+        #region godot callbacks
         public override void _Ready()
         {
             base._Ready();
@@ -36,6 +40,29 @@ namespace GalgameFramework
                 
             }
         }
+        #endregion
+
+        public void BindExtrenalFunctionsToStory()
+        {
+            if (story == null) return;
+
+            story.BindExternalFunction("sfx", new Callable(this, nameof(Sfx)), lookaheadSafe:false);
+            story.BindExternalFunction("set_bg", new Callable(this, nameof))
+        }
+        //callable methods
+        private void Sfx(string effectName)
+        {
+            AudioController.Instance.PlaySFX(resData.GetSfx(effectName));
+        }
+
+        private void SetBG(string bg_name)
+        {
+            backGround.AnimationAsync(new List<SingleAnimationTrack>()[
+
+                //new SingleAnimationTrack(AnimationTrackType.Value, ".modulate:a", 0)
+            ]);
+        }
+        //
 
         public async GDTask DialogueAsync()
         {

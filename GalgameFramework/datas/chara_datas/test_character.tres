@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dnv12v015nwcg" path="res://GalgameFramework/scirpts/res_def/CharacterData.cs" id="1_y7jng"]
 
+[sub_resource type="CSharpScript" id="CSharpScript_hpaeg"]
+
 [resource]
 script = ExtResource("1_y7jng")
 metadata/_custom_type_script = "uid://dnv12v015nwcg"

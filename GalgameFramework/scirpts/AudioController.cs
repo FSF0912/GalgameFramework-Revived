@@ -4,8 +4,10 @@ using System;
 using GodotTask;
 using System.Threading;
 
+[GlobalClass]
 public partial class AudioController : Node
 {
+    public static AudioController Instance { get; private set; }
     private float _BGMPanning;
     public float BGMPanning
     {
@@ -60,6 +62,13 @@ public partial class AudioController : Node
     int _sfx_BusIndex;
     Tween _fadeTween;
     CancellationTokenSource _cts;
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        Instance = this;
+    }
+
 
     public override void _Ready()
     {
